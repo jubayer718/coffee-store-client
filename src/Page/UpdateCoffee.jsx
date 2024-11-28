@@ -1,9 +1,12 @@
+import { Outlet} from "react-router-dom";
 
 
 const UpdateCoffee = () => {
+ 
+ 
   return (
     <div>
-      Update Coffee
+<Outlet></Outlet>
     </div>
   );
 };

@@ -1,10 +1,14 @@
-import Swal from 'sweetalert2'
 
-const AddCoffee = () => {
+import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
+const UpdatedCoffee = () => {
+  const updatedCoffee = useLoaderData()
 
-  const handleAddCoffee = (e) => {
-    e.preventDefault();
+  const {_id,taste,supplier,quantity,photo,details,coffeeName,category} =updatedCoffee
+  console.log(updatedCoffee)
+  const handleUpdateCoffee = (e) => {
+      e.preventDefault();
     const form = e.target;
     const coffeeName = form.name.value;
     const quantity = form.quantity.value;
@@ -13,24 +17,22 @@ const AddCoffee = () => {
     const category = form.category.value;
     const photo = form.photo.value;
     const details = form.details.value;
-    const newCoffee = {
+    const updatedCoffee = {
       coffeeName,quantity,supplier,taste,category,photo,details
     }
-    console.log(newCoffee)
-
-
-    fetch('http://localhost:5000/coffee', {
-      method: "POST",
-      headers: {
+    console.log(updatedCoffee)
+    // send data to server
+    fetch(`http://localhost:5000/coffee/${_id}`, {
+      method: 'PUT',
+       headers: {
         'content-type':'application/json'
       },
-      body:JSON.stringify(newCoffee)
-
+      body:JSON.stringify(updatedCoffee)
     })
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
   title: 'success!',
   text: 'user added successfully',
@@ -39,12 +41,15 @@ const AddCoffee = () => {
 })
         }
     })
+
+    
   }
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div>
+     <div className="min-h-screen flex items-center justify-center">
       
-      <form onSubmit={handleAddCoffee} className="card-body   bg-[#F4F3F0]">
-        <h2 className="text-2xl text-center font-semibold my-3">add coffee</h2>
+      <form onSubmit={handleUpdateCoffee} className="card-body   bg-[#F4F3F0]">
+        <h2 className="text-2xl text-center font-semibold my-3">Update coffee</h2>
         <p className="text-center w-3/4 mx-auto my-3">
           It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.
         </p>
@@ -54,7 +59,7 @@ const AddCoffee = () => {
             <span className="label-text">Coffee Name</span>
           </label>
 
-  <input className="input input-bordered join-item w-full" name="name" placeholder="Coffee Name" />
+  <input defaultValue={coffeeName} className="input input-bordered join-item w-full" name="name" placeholder="Coffee Name" />
  
 </div>
           <div>
@@ -62,7 +67,7 @@ const AddCoffee = () => {
             <span className="label-text">Quantity</span>
           </label>
 
-  <input className="input input-bordered join-item w-full" name="quantity" placeholder="Available Quantity" />
+  <input defaultValue={quantity} className="input input-bordered join-item w-full" name="quantity" placeholder="Available Quantity" />
  
           </div>
           
@@ -72,7 +77,7 @@ const AddCoffee = () => {
             <span className="label-text">Supplier</span>
           </label>
 
-  <input className="input input-bordered join-item w-full" name="supplier" placeholder="Enter Coffee supplier" />
+  <input defaultValue={supplier} className="input input-bordered join-item w-full" name="supplier" placeholder="Enter Coffee supplier" />
  
           </div>
           {/* Taste */}
@@ -81,7 +86,7 @@ const AddCoffee = () => {
             <span className="label-text">Taste</span>
           </label>
 
-  <input className="input input-bordered join-item w-full" name="taste" placeholder="Enter Coffee taste" />
+  <input defaultValue={taste} className="input input-bordered join-item w-full" name="taste" placeholder="Enter Coffee taste" />
  
           </div>
           {/* category */}
@@ -90,7 +95,7 @@ const AddCoffee = () => {
             <span className="label-text">Category</span>
           </label>
 
-  <input className="input input-bordered join-item w-full" name="category" placeholder="Enter Coffee category" />
+  <input  defaultValue={category} className="input input-bordered join-item w-full" name="category" placeholder="Enter Coffee category" />
  
           </div>
           {/* Details */}
@@ -99,17 +104,18 @@ const AddCoffee = () => {
             <span className="label-text">Details</span>
           </label>
 
-  <input className="input input-bordered join-item w-full" name="details" placeholder="Enter Coffee details" />
+  <input  defaultValue={details} className="input input-bordered join-item w-full" name="details" placeholder="Enter Coffee details" />
  
           </div>
 
 
         </div>
-        <input className="input input-bordered my-3" type="text" name="photo" id="" />
-<input className="btn rounded-md bg-[#D2B48C] w-full my-4" type="submit" value="add coffee" />
+        <input defaultValue={photo} className="input input-bordered my-3" type="text" name="photo" id="" />
+<input className="btn rounded-md bg-[#D2B48C] w-full my-4" type="submit" value="Update coffee" />
       </form>
+    </div>
     </div>
   );
 };
 
-export default AddCoffee;
+export default UpdatedCoffee;
