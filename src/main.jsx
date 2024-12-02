@@ -22,7 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    loader:()=>fetch('http://localhost:5000/coffee'),
+    loader:()=>fetch('https://coffee-store-server-brown-delta.vercel.app/coffee'),
     children: [
       
   {
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: "updatedCoffee/:_id",
         element: <UpdatedCoffee></UpdatedCoffee>,
-        loader:({params})=>fetch(`http://localhost:5000/coffee/${params._id}`)
+        loader:({params})=>fetch(`https://coffee-store-server-brown-delta.vercel.app/coffee/${params._id}`)
       }, {
         path: 'signIn',
         element:<SignIn></SignIn>
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       }, {
         path: '/users',
         element: <Users></Users>,
-        loader:()=>fetch('http://localhost:5000/users')
+        loader:()=>fetch('https://coffee-store-server-brown-delta.vercel.app/users')
       }
      
     ]

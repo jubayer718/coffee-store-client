@@ -17,7 +17,7 @@ const SignIn = () => {
        console.log(result)
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo={email,lastSignInTime}
-        fetch('http://localhost:5000/users', {
+        fetch('https://coffee-store-server-brown-delta.vercel.app/users', {
           method: 'PATCH',
           headers: {
             'content-type': "application/json"
@@ -59,7 +59,7 @@ const SignIn = () => {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Sign In</button>
           </div>
-          <p>you have no account <Link className='text-red-600' to="/signUp">Register</Link> Now</p>
+          <p>you have no account <Link className='text-red-600' to="/signUp">Sign Up or Register</Link> Now</p>
       </form>
     </div>
     </div>
