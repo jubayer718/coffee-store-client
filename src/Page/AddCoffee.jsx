@@ -105,7 +105,7 @@ const AddCoffee = () => {
 
 
         </div>
-        <input className="input input-bordered my-3" type="text" name="photo" id="" />
+        <input className="input input-bordered my-3" type="text" name="photo" id="" placeholder='PhotoURL'/>
 <input className="btn rounded-md bg-[#D2B48C] w-full my-4" type="submit" value="add coffee" />
       </form>
     </div>

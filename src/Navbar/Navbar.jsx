@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import './Active.css'
+import { useContext } from "react";
 
 const Navbar = () => {
+  // const { user } = useContext();
+  // console.log(user)
   return (
    <div className="navbar bg-base-100">
   <div className="navbar-start">
@@ -28,6 +31,8 @@ const Navbar = () => {
       <li><NavLink to="addCoffee">Add Coffee</NavLink></li>
     
       <li><NavLink to="updateCoffee">Update Coffee</NavLink></li>
+      <li><NavLink to="signIn">SignIn</NavLink></li>
+      <li><NavLink to="users">User</NavLink></li>
       </ul>
     </div>
     <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -37,7 +42,10 @@ const Navbar = () => {
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="addCoffee">Add Coffee</NavLink></li>
     
-      <li><NavLink to="updateCoffee">Update Coffee</NavLink></li>
+          <li><NavLink to="updateCoffee">Update Coffee</NavLink></li>
+          <li><NavLink to="signIn">SignIn</NavLink></li>
+                <li><NavLink to="users">User</NavLink></li>
+
     </ul>
   </div>
   <div className="navbar-end">
